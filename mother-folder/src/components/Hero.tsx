@@ -19,8 +19,8 @@ const Hero = () => {
         Empowering voices through blockchain anonymity. Transforming legal
         transparency with AI-powered solutions.
       </p>
-      <p className="text-xl fade-pullup-delayed-1 font-bold text-red-600">
-        Your truth, protected and heard.
+      <p className="text-xl fade-pullup-delayed-1 capitalize font-bold text-red-600">
+        Your truth is now protected & heard.
       </p>
       <section className="flex gap-6 fade-pullup-delayed-2">
         <div className="shadow-2xl z-50 cursor-pointer border border-white bg-white hover:bg-white/90 text-gray-800 font-bold p-4 rounded-md text-base flex items-center gap-2">
