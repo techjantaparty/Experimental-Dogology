@@ -1,28 +1,28 @@
-import Noise from "@/components/ui/Noise";
+//import Noise from "@/components/ui/Noise";
 import ShinyText from "@/components/ui/ShinyText";
 import Link from "next/link";
 
 const Hero = () => {
   return (
-    <header className="relative overflow-hidden bg-gradient-to-b from-[#1B1B1B] via-[#2d2d2d] to-[#1B1B1B] flex flex-col space-y-8 items-center pt-32 min-h-screen">
-      <Noise
+    <header className="px-6 relative overflow-hidden bg-gradient-to-b from-[#1B1B1B] via-[#2d2d2d] to-[#1B1B1B] flex flex-col space-y-8 items-center pt-20 md:pt-28 lg:pt-32 min-h-screen">
+      {/*<Noise
         patternSize={250}
         patternScaleX={1}
         patternScaleY={1}
         patternRefreshInterval={2}
         patternAlpha={15}
-      />
-      <h1 className="fade-pullup text-6xl font-bold max-w-xl text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 h-32">
+      />*/}
+      <h1 className="fade-pullup text-4xl md:text-5xl lg:text-6xl font-bold max-w-xl text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 h-32">
         Is Justice Really Blind?
       </h1>
-      <p className="fade-pullup-delayed-1 text-2xl font-medium max-w-2xl text-center text-gray-400">
+      <p className="fade-pullup-delayed-1 text-xl lg:text-2xl font-medium max-w-2xl text-center text-gray-400">
         Empowering voices through blockchain anonymity. Transforming legal
         transparency with AI-powered solutions.
       </p>
-      <p className="text-xl fade-pullup-delayed-1 capitalize font-bold text-red-600">
+      <p className="text-lg text-center lg:text-xl fade-pullup-delayed-1 capitalize font-bold text-red-600">
         Your truth is now protected & heard.
       </p>
-      <section className="flex gap-6 fade-pullup-delayed-2">
+      <section className="flex flex-col sm:flex-row gap-6 fade-pullup-delayed-2">
         <div className="shadow-2xl z-50 cursor-pointer border border-white bg-white hover:bg-white/90 text-gray-800 font-bold p-4 rounded-md text-base flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@ const Hero = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6 -rotate-12"
+            className="size-6 -rotate-12 animate-pulse"
           >
             <path
               strokeLinecap="round"
