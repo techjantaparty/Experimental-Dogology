@@ -1,0 +1,17 @@
+.border-loader {
+  border-radius: 50%; /* Circular shape */
+  border: solid 2px #fff; /* Initial border color */
+  animation: border-pulse 1.5s infinite; /* Animation for border effect */
+}
+
+@keyframes border-pulse {
+  0% {
+    border-width: 2px; /* Initial border width */
+  }
+  50% {
+    border-width: 10px; /* Maximum border width during pulse */
+  }
+  100% {
+    border-width: 2px; /* Return to initial width */
+  }
+}

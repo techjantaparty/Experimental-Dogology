@@ -2,22 +2,24 @@
 
 import SecondaryButton from "@/components/SecondaryButton";
 import React, { useState } from "react";
-import { signup } from "@/actions/signup";
 import Loader from "@/components/Loader/Loader";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-const Signup = () => {
+const Login = () => {
   const [passwordType, setPasswordType] = useState<"password" | "text">(
     "password"
   );
+  const router = useRouter();
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSignup = async () => {
+  const handleLogin = async () => {
     if (!username.trim() || !password.trim()) {
       return setError("Please fill all the fields");
     }
@@ -25,20 +27,27 @@ const Signup = () => {
     setError(null);
     setLoading(true);
 
-    const res = await signup({ username, password });
+    const result = await signIn("credentials", {
+      redirect: false,
+      username,
+      password,
+    });
 
-    if (!res.success) {
-      setError(res.message);
-    }
+    setLoading(false);
 
-    if (res.success) {
-      setUsername("");
-      setPassword("");
-      toast.success("Account created successfully", {
+    if (result?.error) {
+      toast.error(result.error.toString(), {
         duration: 3000,
         position: "top-right",
       });
-      setError(null);
+    }
+
+    if (result?.url) {
+      toast.success("Login successful", {
+        duration: 3000,
+        position: "top-right",
+      });
+      router.replace("/dashboard");
     }
 
     setLoading(false);
@@ -47,7 +56,7 @@ const Signup = () => {
   return (
     <div className="px-6 relative overflow-hidden bg-gradient-to-b from-[#1B1B1B] via-[#2d2d2d] to-[#1B1B1B] flex justify-center items-center min-h-screen">
       <div className="max-w-md w-full bg-[#1B1B1B] p-6 rounded-lg shadow-2xl">
-        <h3 className="text-xl font-bold">Signup to continue</h3>
+        <h3 className="text-xl font-bold">Login to your account</h3>
         <div className="space-y-6">
           <div className="space-y-2">
             <label htmlFor="username" className="block text-gray-400 mt-4">
@@ -58,7 +67,6 @@ const Signup = () => {
               onChange={(e) => setUsername(e.target.value)}
               type="email"
               id="username"
-              placeholder="eg: midnightsun"
               className="w-full bg-[#2d2d2d] text-gray-100 p-2 mt-1 rounded-md"
             />
           </div>
@@ -125,20 +133,20 @@ const Signup = () => {
           {error && <p className="text-red-600 text-sm">{error}</p>}
           <SecondaryButton
             disabled={loading}
-            onClick={handleSignup}
+            onClick={handleLogin}
             className="w-full"
           >
-            {loading ? <Loader /> : "Signup"}
+            {loading ? <Loader /> : "Login"}
           </SecondaryButton>
         </div>
         <div>
           <p className="text-gray-400 text-center mt-6">
-            Already have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
-              href="/login"
+              href="/signup"
               className="text-white underline underline-offset-2"
             >
-              Login
+              Signup
             </Link>
           </p>
         </div>
@@ -147,4 +155,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;
