@@ -25,7 +25,7 @@ const Hero = () => {
         Your truth is now protected & heard.
       </p>
       <section className="flex flex-col sm:flex-row gap-6 fade-pullup-delayed-2">
-        <Link href={"/signup"}>
+        <Link href={"/wallet-connect"}>
           <PrimaryButton>
             <svg
               xmlns="http://www.w3.org/2000/svg"

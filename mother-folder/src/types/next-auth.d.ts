@@ -1,20 +1,12 @@
-import "next-auth";
-import { DefaultSession } from "next-auth";
+import type { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
-  interface User {
-    _id?: string;
-  }
-
+  /**
+   * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
+   */
   interface Session {
-    user: {
-      _id?: string;
-    } & DefaultSession["user"];
-  }
-}
-
-declare module "next-auth/jwt" {
-  interface JWT {
-    _id?: string;
+    /** The user's public Ethereum address. */
+    address?: string;
+    user: DefaultSession["user"];
   }
 }
